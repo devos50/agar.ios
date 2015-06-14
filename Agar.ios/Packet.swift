@@ -80,7 +80,7 @@ class Packet
             if(v == 0) { break }
         }
         
-        let subData = data.subdataWithRange(NSMakeRange(readingOffset - nameLength, nameLength))
+        let subData = data.subdataWithRange(NSMakeRange(readingOffset - nameLength, nameLength - 1))
         return NSString(data: subData, encoding: NSUTF16LittleEndianStringEncoding)!
     }
 }

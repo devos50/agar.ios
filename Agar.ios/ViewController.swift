@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import SpriteKit
 
 class ViewController: UIViewController
 {
     private var socket: WebSocket?
+    private var agarScene: AgarScene?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,18 @@ class ViewController: UIViewController
         var socket = WebSocket(url: NSURL(scheme: "ws", host: "localhost:1234", path: "/")!)
         socket.delegate = self
         socket.connect()
+        
+        // add a SKView
+        let screenSize = UIScreen.mainScreen().bounds
+        let skView = SKView(frame: CGRectMake(0, 100, screenSize.width, screenSize.width))
+        skView.showsFPS = true
+        skView.layer.borderWidth = 1.0
+        skView.layer.borderColor = UIColor.blackColor().CGColor
+        self.view.addSubview(skView)
+        
+        agarScene = AgarScene(size: skView.bounds.size)
+        agarScene?.scaleMode = SKSceneScaleMode.AspectFill
+        skView.presentScene(agarScene)
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,12 +67,14 @@ extension ViewController: WebSocketDelegate
         
         var packetId = UInt8()
         data.getBytes(&packetId, length: sizeof(UInt8))
-        println("type: \(packetId)")
         
-        if packetId == PacketType.UpdateNodes.rawValue { let updateNodesPacket = UpdateNodesPacket(data: data) }
-        else if packetId == PacketType.AddNode.rawValue { let addNodePacket = AddNodePacket(data: data) }
-        else if packetId == PacketType.UpdateLeaderboard.rawValue { let updateLeaderboardPacket = UpdateLeaderboardPacket(data: data) }
-        else if packetId == PacketType.SetBorder.rawValue { let setBorderPacket = SetBorderPacket(data: data) }
+        var packet: Packet?
+        if packetId == PacketType.UpdateNodes.rawValue { packet = UpdateNodesPacket(data: data) }
+        else if packetId == PacketType.AddNode.rawValue { packet = AddNodePacket(data: data) }
+        else if packetId == PacketType.UpdateLeaderboard.rawValue { packet = UpdateLeaderboardPacket(data: data) }
+        else if packetId == PacketType.SetBorder.rawValue { packet = SetBorderPacket(data: data) }
+        
+        agarScene?.handlePacket(packet!)
     }
     
     func websocketDidReceiveMessage(socket: WebSocket, text: String)

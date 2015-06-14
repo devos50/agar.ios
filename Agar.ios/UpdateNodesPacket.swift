@@ -39,15 +39,9 @@ class UpdateNodesPacket: Packet
     func readNodeData(nodeId: UInt32)
     {
         let newNode = Node(nodeId: nodeId, x: readUint16(), y: readUint16(), size: readUint16(), redColor: readUint8(), greenColor: readUint8(), blueColor: readUint8())
-        let numFlags = readUint8()
+        let flagsValue = readUint8()
         
-        // read flags
-        for i in 0..<numFlags
-        {
-            let flagValue = readUint8()
-            // TODO process flags
-        }
-        
-        let name = readString()
+        newNode.name = readString()
+        nodes.append(newNode)
     }
 }

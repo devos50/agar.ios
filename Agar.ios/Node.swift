@@ -18,6 +18,7 @@ class Node
     var greenColor: UInt8
     var blueColor: UInt8
     var flags = [UInt8]()
+    var name: NSString = ""
     
     init(nodeId: UInt32, x: UInt16, y: UInt16, size: UInt16, redColor: UInt8, greenColor: UInt8, blueColor: UInt8)
     {

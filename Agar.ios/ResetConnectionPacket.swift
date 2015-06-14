@@ -15,8 +15,14 @@ class ResetConnectionPacket : Packet
         var value: UInt8 = 255
         let data = NSData(bytes: &value, length: 1)
         
+        
+        
         super.init(data: data)
         self.packetId = .ResetConnection
         
+        let mutableData = data.mutableCopy() as! NSMutableData
+        var oneValue: UInt32 = 1
+        mutableData.appendBytes(&oneValue, length: 4)
+        self.data = mutableData.copy() as! NSData
     }
 }

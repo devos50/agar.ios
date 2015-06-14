@@ -18,5 +18,9 @@ class SetNicknamePacket : Packet
         super.init(data: data)
         self.packetId = .SetNickname
         
+        let mutableData = data.mutableCopy() as! NSMutableData
+        var nickname = NSString(string: "test").dataUsingEncoding(NSUTF16LittleEndianStringEncoding)
+        mutableData.appendData(nickname!)
+        self.data = mutableData.copy() as! NSData
     }
 }
