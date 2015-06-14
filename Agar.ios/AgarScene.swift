@@ -49,7 +49,7 @@ class AgarScene : SKScene
             }
             
             if myNode == nil { return }
-            
+                        
             let leftUnder = CGPointMake(CGFloat(myNode!.x) - 512, CGFloat(myNode!.y) - 512)
             
             // draw all nodes

@@ -25,7 +25,7 @@ class ViewController: UIViewController
         
         // add a SKView
         let screenSize = UIScreen.mainScreen().bounds
-        let skView = SKView(frame: CGRectMake(0, 100, screenSize.width, screenSize.width))
+        let skView = SKView(frame: CGRectMake(0, 0, screenSize.height, screenSize.height))
         skView.showsFPS = true
         skView.layer.borderWidth = 1.0
         skView.layer.borderColor = UIColor.blackColor().CGColor
@@ -36,7 +36,7 @@ class ViewController: UIViewController
         skView.presentScene(agarScene)
         
         // add leaderboard
-        leaderboardView = LeaderboardView(frame: CGRectMake(screenSize.width - 90, 10, 80, 142))
+        leaderboardView = LeaderboardView(frame: CGRectMake(screenSize.height - 90, 10, 80, 142))
         leaderboardView?.alpha = 0.7
         skView.addSubview(leaderboardView!)
     }
@@ -60,6 +60,10 @@ extension ViewController: WebSocketDelegate
         // send nickname
         let setNicknamePacket = SetNicknamePacket()
         socket.writeData(setNicknamePacket.data)
+        
+        // send move mouse packet
+        let moveMousePacket = MoveMousePacket(mouseX: 0, mouseY: 0)
+        socket.writeData(moveMousePacket.data)
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?)
@@ -73,6 +77,8 @@ extension ViewController: WebSocketDelegate
         
         var packetId = UInt8()
         data.getBytes(&packetId, length: sizeof(UInt8))
+        
+        // println("packet id: \(packetId)")
         
         var packet: Packet?
         if packetId == PacketType.UpdateNodes.rawValue { packet = UpdateNodesPacket(data: data) }

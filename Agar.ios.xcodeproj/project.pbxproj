@@ -20,6 +20,7 @@
 		102E59121B2CB963007AB425 /* UpdateNodesPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E59111B2CB963007AB425 /* UpdateNodesPacket.swift */; };
 		10F54AF81B2D93D400B8219F /* AgarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F54AF71B2D93D400B8219F /* AgarScene.swift */; };
 		10F54AFB1B2DC23700B8219F /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F54AFA1B2DC23700B8219F /* LeaderboardView.swift */; };
+		10F54AFD1B2DD17500B8219F /* MoveMousePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F54AFC1B2DD17500B8219F /* MoveMousePacket.swift */; };
 		10F8A6A21B2CC8A000590C7E /* UpdateLeaderboardPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8A6A11B2CC8A000590C7E /* UpdateLeaderboardPacket.swift */; };
 		10F8A6A41B2CCEB900590C7E /* SetNicknamePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8A6A31B2CCEB900590C7E /* SetNicknamePacket.swift */; };
 		10F8A6A61B2CCF3100590C7E /* ResetConnectionPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8A6A51B2CCF3100590C7E /* ResetConnectionPacket.swift */; };
@@ -55,6 +56,7 @@
 		102E59111B2CB963007AB425 /* UpdateNodesPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateNodesPacket.swift; sourceTree = "<group>"; };
 		10F54AF71B2D93D400B8219F /* AgarScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgarScene.swift; sourceTree = "<group>"; };
 		10F54AFA1B2DC23700B8219F /* LeaderboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		10F54AFC1B2DD17500B8219F /* MoveMousePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveMousePacket.swift; sourceTree = "<group>"; };
 		10F8A6A11B2CC8A000590C7E /* UpdateLeaderboardPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateLeaderboardPacket.swift; sourceTree = "<group>"; };
 		10F8A6A31B2CCEB900590C7E /* SetNicknamePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNicknamePacket.swift; sourceTree = "<group>"; };
 		10F8A6A51B2CCF3100590C7E /* ResetConnectionPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetConnectionPacket.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				10F8A6A51B2CCF3100590C7E /* ResetConnectionPacket.swift */,
 				10F8A6A71B2CD05400590C7E /* SetBorderPacket.swift */,
 				10F8A6A91B2CD23000590C7E /* AddNodePacket.swift */,
+				10F54AFC1B2DD17500B8219F /* MoveMousePacket.swift */,
 			);
 			name = Packets;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				102E58E61B2CAB43007AB425 /* ViewController.swift in Sources */,
 				10F54AF81B2D93D400B8219F /* AgarScene.swift in Sources */,
 				102E59121B2CB963007AB425 /* UpdateNodesPacket.swift in Sources */,
+				10F54AFD1B2DD17500B8219F /* MoveMousePacket.swift in Sources */,
 				102E590C1B2CB824007AB425 /* Node.swift in Sources */,
 				102E59081B2CAB90007AB425 /* Security.swift in Sources */,
 				102E59101B2CB914007AB425 /* Packet.swift in Sources */,
