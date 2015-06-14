@@ -13,6 +13,7 @@ class ViewController: UIViewController
 {
     private var socket: WebSocket?
     private var agarScene: AgarScene?
+    private var leaderboardView: LeaderboardView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,11 @@ class ViewController: UIViewController
         agarScene = AgarScene(size: skView.bounds.size)
         agarScene?.scaleMode = SKSceneScaleMode.AspectFill
         skView.presentScene(agarScene)
+        
+        // add leaderboard
+        leaderboardView = LeaderboardView(frame: CGRectMake(screenSize.width - 90, 10, 80, 142))
+        leaderboardView?.alpha = 0.7
+        skView.addSubview(leaderboardView!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,7 +77,12 @@ extension ViewController: WebSocketDelegate
         var packet: Packet?
         if packetId == PacketType.UpdateNodes.rawValue { packet = UpdateNodesPacket(data: data) }
         else if packetId == PacketType.AddNode.rawValue { packet = AddNodePacket(data: data) }
-        else if packetId == PacketType.UpdateLeaderboard.rawValue { packet = UpdateLeaderboardPacket(data: data) }
+        else if packetId == PacketType.UpdateLeaderboard.rawValue
+        {
+            packet = UpdateLeaderboardPacket(data: data)
+            leaderboardView?.updateLeaderboard(packet as! UpdateLeaderboardPacket)
+            return
+        }
         else if packetId == PacketType.SetBorder.rawValue { packet = SetBorderPacket(data: data) }
         
         agarScene?.handlePacket(packet!)
