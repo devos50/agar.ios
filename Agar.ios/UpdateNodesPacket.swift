@@ -10,9 +10,8 @@ import Foundation
 
 class UpdateNodesPacket: Packet
 {
-    var nodesToDestroy: UInt16 = 0
     var nodes = [Node]()
-    var activeNodes = [UInt32]()
+    var nodesToDestroy = [UInt32]()
     
     override init(data: NSData)
     {
@@ -20,20 +19,23 @@ class UpdateNodesPacket: Packet
         self.packetId = .UpdateNodes
         
         // read packet
-        nodesToDestroy = readUint16()
-        for i in 0..<nodesToDestroy
+        let numNodesToDestroy = readUint16()
+        for i in 0..<numNodesToDestroy
         {
             let nodeKiller = readUint32()
             let nodeId = readUint32()
+            nodesToDestroy.append(nodeId)
         }
         
         while true
         {
             // iterate over all nodes available
             let nodeId = readUint32()
-            if nodeId == 0 { break; }
+            if nodeId == 0 { break }
             readNodeData(nodeId)
         }
+        
+        println("-----")
     }
     
     func readNodeData(nodeId: UInt32)
@@ -42,6 +44,7 @@ class UpdateNodesPacket: Packet
         let flagsValue = readUint8()
         
         newNode.name = readString()
+        println("update node \(newNode.nodeId) (\(newNode.name)) to \(newNode.x), \(newNode.y)")
         nodes.append(newNode)
     }
 }

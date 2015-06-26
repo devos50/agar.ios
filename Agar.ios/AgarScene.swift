@@ -11,9 +11,11 @@ import SpriteKit
 
 class AgarScene : SKScene
 {
-    private var nodes = [Node]()
+    private var playerCells = [Node]()
+    private var nodesOnScreen = [UInt32]()
+    
     private var canvas = CGRectZero
-    private var labels = [UILabel]()
+    private var yourPosition = CGPointZero
     
     override init(size: CGSize)
     {
@@ -29,7 +31,14 @@ class AgarScene : SKScene
     {
         if packet is AddNodePacket
         {
-            
+            let addNodePacket = packet as! AddNodePacket
+            yourNodeId = addNodePacket.nodeId
+            println("Your node id: \(yourNodeId)")
+        }
+        else if packet is ClearNodesPacket
+        {
+            playerCells = []
+            nodesOnScreen = []
         }
         else if packet is SetBorderPacket
         {
@@ -39,42 +48,62 @@ class AgarScene : SKScene
         else if packet is UpdateNodesPacket
         {
             let updateNodesPacket = packet as! UpdateNodesPacket
-            nodes = updateNodesPacket.nodes
+            let nodes = updateNodesPacket.nodes
             
-            // find you
-            var myNode: Node?
-            for node in nodes
+            // remove some of the nodes from the field
+            for nodeIdToRemove in updateNodesPacket.nodesToDestroy
             {
-                if node.name == "test" { myNode = node; break }
+                if nodeIdToRemove == yourNodeId
+                {
+                    println("DEATH")
+                }
+                
+                if nodesOnScreen[nodeIdToRemove] != nil
+                {
+                    let nodeToRemove = nodesOnScreen[nodeIdToRemove]
+                    nodeToRemove!.removeFromParent()
+                    nodesOnScreen[nodeIdToRemove] = nil
+                }
             }
             
-            if myNode == nil { return }
-                        
-            let leftUnder = CGPointMake(CGFloat(myNode!.x) - 512, CGFloat(myNode!.y) - 512)
-            
-            // draw all nodes
-            self.removeAllChildren()
-            for label in labels { label.removeFromSuperview() }
-            labels = [UILabel]()
-            
+            // find you
             for node in nodes
             {
-                let shapeNode = SKShapeNode(circleOfRadius: CGFloat(node.size) / 3)
-                
-                let nodePosition = CGPointMake(CGFloat(node.x), CGFloat(node.y))
-                let relativePosition = CGPointMake(nodePosition.x - leftUnder.x, nodePosition.y - leftUnder.y)
-                
-                shapeNode.position = CGPointMake(CGFloat(relativePosition.x) / 1024.0 * self.frame.size.width, CGFloat(relativePosition.y) / 1024.0 * self.frame.size.width)
-                shapeNode.fillColor = SKColor(red: CGFloat(node.redColor) / 255.0, green: CGFloat(node.greenColor) / 255.0, blue: CGFloat(node.blueColor) / 255.0, alpha: 1.0)
-                self.addChild(shapeNode)
-                
-                let nameLabel = UILabel(frame: CGRectMake(shapeNode.frame.origin.x, self.view!.frame.size.height - shapeNode.frame.origin.y - shapeNode.frame.size.height, shapeNode.frame.size.width, shapeNode.frame.size.height))
-                nameLabel.text = node.name as String
-                nameLabel.textAlignment = .Center
-                nameLabel.adjustsFontSizeToFitWidth = true
-                nameLabel.minimumScaleFactor = 0.01
-                labels.append(nameLabel)
-                self.view!.addSubview(nameLabel)
+                if node.nodeId == yourNodeId
+                {
+                    yourPosition = CGPointMake(CGFloat(node.x), CGFloat(node.y))
+                }
+            }
+            
+            let leftUnder = CGPointMake(yourPosition.x - 512, yourPosition.y - 512)
+            
+            // iterate over nodes
+            for node in nodes
+            {
+                //println("node position: \(yourPosition.x), \(yourPosition.y)")
+                let nodeId = node.nodeId
+                if nodesOnScreen[nodeId] == nil
+                {
+                    // we have a new node - create a new SKShapeNode and add it to the list
+                    let shapeNode = SKShapeNode(circleOfRadius: CGFloat(node.size) / 2.0)
+                    
+                    let nodePosition = CGPointMake(CGFloat(node.x), CGFloat(node.y))
+                    let relativePosition = CGPointMake(nodePosition.x - leftUnder.x, nodePosition.y - leftUnder.y)
+                    
+                    shapeNode.position = CGPointMake(CGFloat(relativePosition.x) / 1024.0 * self.frame.size.width, CGFloat(relativePosition.y) / 1024.0 * self.frame.size.height)
+                    shapeNode.fillColor = SKColor(red: CGFloat(node.redColor) / 255.0, green: CGFloat(node.greenColor) / 255.0, blue: CGFloat(node.blueColor) / 255.0, alpha: 1.0)
+                    self.addChild(shapeNode)
+                    nodesOnScreen[nodeId] = shapeNode
+                }
+                else
+                {
+                    // update the position of this node
+                    let shapeNode = nodesOnScreen[nodeId]
+                    let nodePosition = CGPointMake(CGFloat(node.x), CGFloat(node.y))
+                    let relativePosition = CGPointMake(nodePosition.x - leftUnder.x, nodePosition.y - leftUnder.y)
+                    
+                    shapeNode!.position = CGPointMake(CGFloat(relativePosition.x) / 1024.0 * self.frame.size.width, CGFloat(relativePosition.y) / 1024.0 * self.frame.size.height)
+                }
             }
         }
     }

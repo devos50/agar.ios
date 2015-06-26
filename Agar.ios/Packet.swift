@@ -13,6 +13,7 @@ enum PacketType: UInt8
     case None = 2
     case SetNickname = 0
     case UpdateNodes = 16
+    case ClearNodes = 20
     case AddNode = 32
     case UpdateLeaderboard = 49
     case SetBorder = 64

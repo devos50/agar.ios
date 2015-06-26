@@ -11,7 +11,6 @@ import SpriteKit
 
 class ViewController: UIViewController
 {
-    private var socket: WebSocket?
     private var agarScene: AgarScene?
     private var leaderboardView: LeaderboardView?
 
@@ -19,16 +18,14 @@ class ViewController: UIViewController
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var socket = WebSocket(url: NSURL(scheme: "ws", host: "localhost:1234", path: "/")!)
+        let socket = SRWebSocket(URL: NSURL(string: "ws://127.0.0.1:443"))
         socket.delegate = self
-        socket.connect()
+        socket.open()
         
         // add a SKView
         let screenSize = UIScreen.mainScreen().bounds
-        let skView = SKView(frame: CGRectMake(0, 0, screenSize.height, screenSize.height))
+        let skView = SKView(frame: CGRectMake(0, 0, screenSize.width, screenSize.height))
         skView.showsFPS = true
-        skView.layer.borderWidth = 1.0
-        skView.layer.borderColor = UIColor.blackColor().CGColor
         self.view.addSubview(skView)
         
         agarScene = AgarScene(size: skView.bounds.size)
@@ -36,7 +33,7 @@ class ViewController: UIViewController
         skView.presentScene(agarScene)
         
         // add leaderboard
-        leaderboardView = LeaderboardView(frame: CGRectMake(screenSize.height - 90, 10, 80, 142))
+        leaderboardView = LeaderboardView(frame: CGRectMake(screenSize.width - 110, 10, 100, 142))
         leaderboardView?.alpha = 0.7
         skView.addSubview(leaderboardView!)
     }
@@ -47,32 +44,35 @@ class ViewController: UIViewController
     }
 }
 
-extension ViewController: WebSocketDelegate
+extension ViewController: SRWebSocketDelegate
 {
-    func websocketDidConnect(socket: WebSocket)
-    {
-        println("connected")
+    func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
+        println("CLOSED")
+    }
+    
+    func webSocketDidOpen(webSocket: SRWebSocket!) {
+        println("DID OPEN")
         
         // reset connection
         let resetConnectionPacket = ResetConnectionPacket()
-        socket.writeData(resetConnectionPacket.data)
+        webSocket.send(resetConnectionPacket.data)
         
         // send nickname
         let setNicknamePacket = SetNicknamePacket()
-        socket.writeData(setNicknamePacket.data)
+        webSocket.send(setNicknamePacket.data)
         
         // send move mouse packet
-        let moveMousePacket = MoveMousePacket(mouseX: 0, mouseY: 0)
-        socket.writeData(moveMousePacket.data)
+        //let moveMousePacket = MoveMousePacket(mouseX: 10, mouseY: 10)
+        //webSocket.send(moveMousePacket.data)
     }
     
-    func websocketDidDisconnect(socket: WebSocket, error: NSError?)
-    {
-        println("disconnected")
+    func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
+        println("FAILED: \(error)")
     }
     
-    func websocketDidReceiveData(socket: WebSocket, data: NSData)
-    {
+    func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject!) {
+        let data = message as! NSData
+        
         let length = data.length / sizeof(UInt8)
         
         var packetId = UInt8()
@@ -90,12 +90,8 @@ extension ViewController: WebSocketDelegate
             return
         }
         else if packetId == PacketType.SetBorder.rawValue { packet = SetBorderPacket(data: data) }
+        else if packetId == PacketType.ClearNodes.rawValue { packet = ClearNodesPacket(data: data) }
         
         agarScene?.handlePacket(packet!)
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocket, text: String)
-    {
-        println("did receive message")
     }
 }

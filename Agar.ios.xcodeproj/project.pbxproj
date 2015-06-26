@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		100AD2441B3D4501008BFB71 /* ClearNodesPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100AD2431B3D4501008BFB71 /* ClearNodesPacket.swift */; };
 		102E58E41B2CAB43007AB425 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E58E31B2CAB43007AB425 /* AppDelegate.swift */; };
 		102E58E61B2CAB43007AB425 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E58E51B2CAB43007AB425 /* ViewController.swift */; };
 		102E58E91B2CAB43007AB425 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 102E58E71B2CAB43007AB425 /* Main.storyboard */; };
 		102E58EB1B2CAB43007AB425 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 102E58EA1B2CAB43007AB425 /* Images.xcassets */; };
 		102E58EE1B2CAB43007AB425 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 102E58EC1B2CAB43007AB425 /* LaunchScreen.xib */; };
 		102E58FA1B2CAB43007AB425 /* Agar_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E58F91B2CAB43007AB425 /* Agar_iosTests.swift */; };
-		102E59061B2CAB85007AB425 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E59051B2CAB85007AB425 /* WebSocket.swift */; };
-		102E59081B2CAB90007AB425 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E59071B2CAB90007AB425 /* Security.swift */; };
 		102E590C1B2CB824007AB425 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E590B1B2CB824007AB425 /* Node.swift */; };
 		102E59101B2CB914007AB425 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E590F1B2CB914007AB425 /* Packet.swift */; };
 		102E59121B2CB963007AB425 /* UpdateNodesPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E59111B2CB963007AB425 /* UpdateNodesPacket.swift */; };
+		103242721B2DF25200A1A932 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 103242711B2DF25200A1A932 /* SRWebSocket.m */; };
+		103242741B2DF28B00A1A932 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 103242731B2DF28B00A1A932 /* libicucore.dylib */; };
 		10F54AF81B2D93D400B8219F /* AgarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F54AF71B2D93D400B8219F /* AgarScene.swift */; };
 		10F54AFB1B2DC23700B8219F /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F54AFA1B2DC23700B8219F /* LeaderboardView.swift */; };
 		10F54AFD1B2DD17500B8219F /* MoveMousePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F54AFC1B2DD17500B8219F /* MoveMousePacket.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		100AD2431B3D4501008BFB71 /* ClearNodesPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearNodesPacket.swift; sourceTree = "<group>"; };
 		102E58DE1B2CAB43007AB425 /* Agar.ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agar.ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		102E58E21B2CAB43007AB425 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		102E58E31B2CAB43007AB425 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,11 +51,13 @@
 		102E58F31B2CAB43007AB425 /* Agar.iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Agar.iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		102E58F81B2CAB43007AB425 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		102E58F91B2CAB43007AB425 /* Agar_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agar_iosTests.swift; sourceTree = "<group>"; };
-		102E59051B2CAB85007AB425 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
-		102E59071B2CAB90007AB425 /* Security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
 		102E590B1B2CB824007AB425 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		102E590F1B2CB914007AB425 /* Packet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
 		102E59111B2CB963007AB425 /* UpdateNodesPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateNodesPacket.swift; sourceTree = "<group>"; };
+		1032426F1B2DF25100A1A932 /* Agar.ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Agar.ios-Bridging-Header.h"; sourceTree = "<group>"; };
+		103242701B2DF25200A1A932 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		103242711B2DF25200A1A932 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		103242731B2DF28B00A1A932 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		10F54AF71B2D93D400B8219F /* AgarScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgarScene.swift; sourceTree = "<group>"; };
 		10F54AFA1B2DC23700B8219F /* LeaderboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		10F54AFC1B2DD17500B8219F /* MoveMousePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveMousePacket.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				103242741B2DF28B00A1A932 /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +90,7 @@
 		102E58D51B2CAB43007AB425 = {
 			isa = PBXGroup;
 			children = (
+				103242731B2DF28B00A1A932 /* libicucore.dylib */,
 				102E58E01B2CAB43007AB425 /* Agar.ios */,
 				102E58F61B2CAB43007AB425 /* Agar.iosTests */,
 				102E58DF1B2CAB43007AB425 /* Products */,
@@ -111,6 +117,7 @@
 				102E58E71B2CAB43007AB425 /* Main.storyboard */,
 				102E58EA1B2CAB43007AB425 /* Images.xcassets */,
 				102E58EC1B2CAB43007AB425 /* LaunchScreen.xib */,
+				1032426F1B2DF25100A1A932 /* Agar.ios-Bridging-Header.h */,
 				102E58E11B2CAB43007AB425 /* Supporting Files */,
 			);
 			path = Agar.ios;
@@ -144,18 +151,9 @@
 		102E59031B2CAB79007AB425 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				102E59041B2CAB7E007AB425 /* Starscream */,
+				1032426E1B2DF24900A1A932 /* SocketRocket */,
 			);
 			name = External;
-			sourceTree = "<group>";
-		};
-		102E59041B2CAB7E007AB425 /* Starscream */ = {
-			isa = PBXGroup;
-			children = (
-				102E59071B2CAB90007AB425 /* Security.swift */,
-				102E59051B2CAB85007AB425 /* WebSocket.swift */,
-			);
-			name = Starscream;
 			sourceTree = "<group>";
 		};
 		102E590A1B2CB814007AB425 /* model */ = {
@@ -165,6 +163,15 @@
 				102E590B1B2CB824007AB425 /* Node.swift */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		1032426E1B2DF24900A1A932 /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				103242701B2DF25200A1A932 /* SRWebSocket.h */,
+				103242711B2DF25200A1A932 /* SRWebSocket.m */,
+			);
+			name = SocketRocket;
 			sourceTree = "<group>";
 		};
 		10F54AC61B2D901300B8219F /* views */ = {
@@ -187,6 +194,7 @@
 				10F8A6A71B2CD05400590C7E /* SetBorderPacket.swift */,
 				10F8A6A91B2CD23000590C7E /* AddNodePacket.swift */,
 				10F54AFC1B2DD17500B8219F /* MoveMousePacket.swift */,
+				100AD2431B3D4501008BFB71 /* ClearNodesPacket.swift */,
 			);
 			name = Packets;
 			sourceTree = "<group>";
@@ -295,17 +303,17 @@
 				10F8A6AA1B2CD23000590C7E /* AddNodePacket.swift in Sources */,
 				102E58E61B2CAB43007AB425 /* ViewController.swift in Sources */,
 				10F54AF81B2D93D400B8219F /* AgarScene.swift in Sources */,
+				103242721B2DF25200A1A932 /* SRWebSocket.m in Sources */,
 				102E59121B2CB963007AB425 /* UpdateNodesPacket.swift in Sources */,
 				10F54AFD1B2DD17500B8219F /* MoveMousePacket.swift in Sources */,
 				102E590C1B2CB824007AB425 /* Node.swift in Sources */,
-				102E59081B2CAB90007AB425 /* Security.swift in Sources */,
 				102E59101B2CB914007AB425 /* Packet.swift in Sources */,
-				102E59061B2CAB85007AB425 /* WebSocket.swift in Sources */,
 				10F8A6A61B2CCF3100590C7E /* ResetConnectionPacket.swift in Sources */,
 				10F54AFB1B2DC23700B8219F /* LeaderboardView.swift in Sources */,
 				10F8A6A81B2CD05400590C7E /* SetBorderPacket.swift in Sources */,
 				10F8A6A41B2CCEB900590C7E /* SetNicknamePacket.swift in Sources */,
 				102E58E41B2CAB43007AB425 /* AppDelegate.swift in Sources */,
+				100AD2441B3D4501008BFB71 /* ClearNodesPacket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,9 +440,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Agar.ios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Agar.ios/Agar.ios-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -442,9 +453,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Agar.ios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Agar.ios/Agar.ios-Bridging-Header.h";
 			};
 			name = Release;
 		};
